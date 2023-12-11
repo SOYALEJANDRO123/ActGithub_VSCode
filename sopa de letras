@@ -109,7 +109,21 @@ public class SopadeletrasNacho {
 					}
 				}
 			}
-
+			static void recorrerDiagonalSopa(char[][] m) {
+				for (int i = 0; i < m.length; i++) {
+					for (int j = 0; j < m[i].length; j++) {
+						int row = i;
+						int col = j;
+						while (row < m.length && col < m[i].length) {
+							System.out.print(m[row][col] + " ");
+							row++;
+							col++;
+						}
+						System.out.println();
+					}
+				}
+			}
+			
 
 		}
 
