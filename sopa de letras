@@ -1,0 +1,116 @@
+package Examen2019;
+import java.util.Iterator;
+
+public class SopadeletrasNacho {
+
+		public static void main(String[] args) {
+
+			String[] palabras = {"esa", "edu", "mus", "mar", "ora", "aro", "uva", "ufo", "mes", "oso",
+					"ron", "seo", "pus", "rol", "rio", "oir", "muy", "ras", "ivi", "ojo", "uvi", "veo", "pum", "bus",
+					"gal", "mas"};
+
+			char[][] sopa = generarSopaDeLetras();
+
+			imprimirSopaDeLetras( sopa );
+			imprimirPalabrasEncontradas( sopa, palabras );
+
+		}
+
+		static char[][] generarSopaDeLetras() {
+			char[][] n = new char[20][20];
+
+			for (int i = 0; i < n.length; i++) {
+				for (int j = 0; j < n[i].length; j++) {
+					n[i][j] = (char) (Math.random()*('z' - 'a' + 1) + 'a');;
+				}
+			}
+			return 	n;
+		} 
+		static void imprimirSopaDeLetras(char[][] m) {
+			System.out.printf("    ");
+			for (int i = 0; i < m.length; i++) {
+				System.out.printf("%-3d",i);
+			}
+			System.out.println();
+			for (int i = 0; i < m.length + 2; i++) {
+				System.out.printf("---");
+			}
+			System.out.println();
+			for (int i = 0; i < m.length; i++) {
+				System.out.printf("%2d |",i);
+				for (int j = 0; j < m[i].length; j++) {
+					System.out.printf("%c  ",m[i][j]);
+				}
+				System.out.printf(" |\n");
+			}
+			for (int i = 0; i < m.length + 2; i++) {
+				System.out.printf("---");
+			}
+		}
+		static void imprimirPalabrasEncontradas(char[][] m , String[] p) {
+
+			String aux = "";
+			//Recorrer de izquierda a derecha
+			for (int i = 0; i < m.length; i++) {
+				for (int j = 0; j < m[i].length-2; j++) {
+					aux = "";
+					for(int k = 0; k < 3;k++)
+						aux += m[i][j+k];
+
+					for (int k = 0; k < p.length; k++) {
+						if(aux.equals(p[k])) {
+							System.out.printf("\n%s (izquierda-derecha)",p[k]);
+							System.out.printf("%d %d",i,j);
+						}
+					}
+				}	
+
+
+			}
+			//Recorrer de derecha a izquierda
+			for (int i = 0; i < m.length; i++) {
+				for (int j = m[i].length - 1; j > 2 ; j--) {
+					aux = "";
+					for(int k = 0; k < 3;k++)
+						aux += m[i][j-k];
+
+					for (int k = 0; k < p.length; k++) {
+						if(aux.equals(p[k])) {
+							System.out.printf("\n%s (derecha-izquierda)",p[k]);
+						}
+					}
+				}
+			}
+			//Recorrer de arriba abajo
+			for (int i = 0; i < m.length; i++) {
+				for (int j = 0; j < m[i].length-2; j++) {
+					aux = "";
+					for(int k = 0; k < 3;k++)
+						aux += m[j+k][i];
+
+					for (int k = 0; k < p.length; k++) {
+						if(aux.equals(p[k])) {
+							System.out.printf("\n%s (arriba-abajo)",p[k]);
+						}
+					}
+				}
+			}
+			//Recorrer de abajo a arriba
+			for (int i = 0; i < m.length; i++) {
+				for (int j = m[i].length - 1; j > 2 ; j--) {
+					aux = "";
+					for(int k = 0; k < 3;k++)
+						aux += m[j-k][i];
+
+					for (int k = 0; k < p.length; k++) {
+						if(aux.equals(p[k])) {
+							System.out.printf("\n%s (abajo-arriba)",p[k]);
+						}
+					}
+				}
+			}
+
+
+		}
+
+}
